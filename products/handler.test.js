@@ -19,8 +19,7 @@ describe("products", () => {
       const { body } = await request
         .post("/products/create")
         .send(product)
-        .set("Accept", "application/json")
-        .expect("Content-Type", /json/);
+        .set("Accept", "application/json");
       expect(body).toMatchObject(product);
     });
   });
