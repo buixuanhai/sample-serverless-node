@@ -117,3 +117,9 @@ functions:
       - http:
           path: products/{id}
           method: get
+  listProduct:
+    handler: handler.list
+    events:
+      - http:
+          path: products
+          method: get

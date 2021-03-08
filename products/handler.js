@@ -105,3 +105,32 @@ module.exports.get = async (event) => {
     body: JSON.stringify(product),
   };
 };
+
+module.exports.list = async (event) => {
+  const { page = 1, pageSize = 5 } = event.queryStringParameters || {};
+  let result;
+  console.log(page, pageSize);
+  try {
+    result = await prisma.product.findMany({
+      skip: (page - 1) * parseInt(pageSize),
+      take: parseInt(pageSize),
+      // where: {
+      //   email: {
+      //     contains: "prisma.io",
+      //   },
+      // },
+    });
+
+    // console.log(result);
+  } catch (error) {
+    // console.log(error);
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ message: "Invalid request" }),
+    };
+  }
+  return {
+    statusCode: 200,
+    body: JSON.stringify(result),
+  };
+};

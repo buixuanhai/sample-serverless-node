@@ -104,4 +104,29 @@ describe("products", () => {
         .expect(200);
     });
   });
+
+  describe.only("list", () => {
+    test("list products with default pagination", async () => {
+      const { body } = await request
+        .get("/products")
+        .set("Accept", "application/json")
+        .expect(200);
+
+      body.forEach((item, index) => {
+        expect(item.id).toBe(index + 1);
+      });
+    });
+
+    test("list products with custom pagination", async () => {
+      const { body } = await request
+        .get("/products/?page=2&pageSize=5")
+        .set("Accept", "application/json")
+        .expect(200);
+
+      body.forEach((item, index) => {
+        expect(item.id).toBe(index + 6);
+      });
+    });
+    test("list products with search params", () => {});
+  });
 });
