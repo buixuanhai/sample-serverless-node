@@ -20,9 +20,17 @@ module.exports.hello = async (event) => {
 };
 
 module.exports.create = async (event) => {
-  const result = await prisma.product.create({
-    data: JSON.parse(event.body),
-  });
+  let result;
+  try {
+    result = await prisma.product.create({
+      data: JSON.parse(event.body),
+    });
+  } catch (error) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ message: "Invalid request" }),
+    };
+  }
   return {
     statusCode: 200,
     body: JSON.stringify(result),

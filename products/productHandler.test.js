@@ -22,5 +22,27 @@ describe("products", () => {
         .set("Accept", "application/json");
       expect(body).toMatchObject(product);
     });
+    test("should validate product payload when create", async () => {
+      const product = {
+        color: faker.commerce.color(),
+        price: "99",
+      };
+      const { body } = await request
+        .post("/products/create")
+        .send(product)
+        .set("Accept", "application/json")
+        .expect(400);
+      expect(body).toMatchObject({ message: "Invalid request" });
+    });
+  });
+
+  describe("update", () => {
+    test("should update product", () => {});
+
+    test("should validate product payload when update", () => {});
+  });
+
+  describe("delete", () => {
+    test("should delete a product", () => {});
   });
 });
