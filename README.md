@@ -11,12 +11,12 @@
   - [x] Products
   - [x] Brands
 - Product search
-  - [ ] By name
+  - [x] By name
 - Product filter
   - [ ] By price
 - Streaming and store data for analytics.
-  - [ ] Setup kinesis
   - [ ] Create analytics_service
+  - [ ] Setup kinesis
   - [ ] Create DynamoDB table with activities table
   - [ ] Stream search queries - use SQS
   - [ ] Stream filtering queries - use direct http call

@@ -127,6 +127,15 @@ describe("products", () => {
         expect(item.id).toBe(index + 6);
       });
     });
-    test("list products with search params", () => {});
+    test("list products with search params", async () => {
+      const { body } = await request
+        .get("/products?search=small")
+        .set("Accept", "application/json")
+        .expect(200);
+
+      body.forEach((item) => {
+        expect(item.name).toContain("Small");
+      });
+    });
   });
 });
