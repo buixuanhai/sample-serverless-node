@@ -65,6 +65,15 @@ custom:
               type: string
             price:
               type: string
+      - name: 400JsonResponse
+        contentType: "application/json"
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+            statusCode:
+              type: number
     commonModelSchemaFragments:
       MethodResponse400Json:
         statusCode: "400"
@@ -72,9 +81,6 @@ custom:
           "application/json": 400JsonResponse
 
 functions:
-  hello:
-    handler: handler.hello
-
   createProduct:
     handler: handler.create
     events:
@@ -86,8 +92,16 @@ functions:
               "application/json": CreateProductRequest
           path: products/create
           method: post
+          reqValidatorName: onlyBody
           methodResponses:
             - statusCode: "201"
               responseModels:
                 "application/json": CreateProductResponse
-            - ${self:custom.commonModelSchemaFragments.MethodResponse400Json}
+            - ${custom.commonModelSchemaFragments.MethodResponse400Json}
+
+  updateProduct:
+    handler: handler.update
+    events:
+      - http:
+          path: products/{id}/update
+          method: post

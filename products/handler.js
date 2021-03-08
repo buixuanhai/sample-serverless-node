@@ -2,23 +2,6 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-module.exports.hello = async (event) => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: "Go Serverless v1.0! Your function executed successfully!",
-        input: event,
-      },
-      null,
-      2
-    ),
-  };
-
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
-};
-
 module.exports.create = async (event) => {
   let result;
   try {
@@ -31,6 +14,37 @@ module.exports.create = async (event) => {
       body: JSON.stringify({ message: "Invalid request" }),
     };
   }
+  return {
+    statusCode: 200,
+    body: JSON.stringify(result),
+  };
+};
+
+module.exports.update = async (event) => {
+  console.log(event.pathParameters);
+  const { id } = event.pathParameters;
+
+  let result;
+  try {
+    const product = await prisma.product.findUnique({
+      where: {
+        id: parseInt(id),
+      },
+    });
+    if (!product) {
+      throw new Error("Not found");
+    }
+    result = await prisma.product.update({
+      where: { id: 1 },
+      data: JSON.parse(event.body),
+    });
+  } catch (error) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ message: "Invalid request" }),
+    };
+  }
+
   return {
     statusCode: 200,
     body: JSON.stringify(result),
