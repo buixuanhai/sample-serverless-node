@@ -12,8 +12,9 @@
 - Product filter
   - [ ] By price
 - Streaming and store data for analytics. Should be a separate service
-  - [ ] Search queries
-  - [ ] View queries
+  - [ ] Setup kinesis
+  - [ ] Stream search queries - use SQS
+  - [ ] Stream view products queries - use Kinesis
 - Other
   - [ ] Draw diagram
   - [ ] ER model
