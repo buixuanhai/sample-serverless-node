@@ -38,6 +38,10 @@ describe("products", () => {
     });
   });
 
+  describe("get", () => {
+    test("should get a product", () => {});
+  });
+
   describe("update", () => {
     test("should update product", async () => {
       const product = {

@@ -3,9 +3,10 @@
 ### TODOs
 
 - Products CRUD
-  - [ ] Create
-  - [ ] Update
-  - [ ] Delete
+  - [x] Create
+  - [x] Update
+  - [x] Delete
+  - [ ] Read
 - Product search
   - [ ] By name
 - Product filter
