@@ -90,7 +90,7 @@ functions:
             description: "Create product"
             requestModels:
               "application/json": CreateProductRequest
-          path: products/create
+          path: products
           method: post
           reqValidatorName: onlyBody
           methodResponses:
@@ -103,5 +103,11 @@ functions:
     handler: handler.update
     events:
       - http:
-          path: products/{id}/update
+          path: products/{id}
           method: post
+  deleteProduct:
+    handler: handler.delete
+    events:
+      - http:
+          path: products/{id}
+          method: delete

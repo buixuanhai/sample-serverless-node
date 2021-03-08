@@ -12,12 +12,13 @@ describe("products", () => {
   describe("create", () => {
     test("should create a product", async () => {
       const product = {
-        name: faker.commerce.product(),
+        name: faker.commerce.productName(),
         color: faker.commerce.color(),
         price: "99",
       };
+
       const { body } = await request
-        .post("/products/create")
+        .post("/products")
         .send(product)
         .set("Accept", "application/json");
       expect(body).toMatchObject(product);
@@ -29,7 +30,7 @@ describe("products", () => {
         price: "99",
       };
       const { body } = await request
-        .post("/products/create")
+        .post("/products")
         .send(product)
         .set("Accept", "application/json")
         .expect(400);
@@ -41,11 +42,12 @@ describe("products", () => {
     test("should update product", async () => {
       const product = {
         color: faker.commerce.color(),
+        name: faker.commerce.productName(),
         price: "99",
       };
 
       const { body } = await request
-        .post("/products/1/update")
+        .post("/products/1")
         .send(product)
         .set("Accept", "application/json")
         .expect(200);
@@ -59,7 +61,7 @@ describe("products", () => {
       };
 
       const { body } = await request
-        .post("/products/999/update")
+        .post("/products/999")
         .send(product)
         .set("Accept", "application/json")
         .expect(400);

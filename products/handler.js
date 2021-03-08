@@ -21,7 +21,6 @@ module.exports.create = async (event) => {
 };
 
 module.exports.update = async (event) => {
-  console.log(event.pathParameters);
   const { id } = event.pathParameters;
 
   let result;
@@ -35,7 +34,7 @@ module.exports.update = async (event) => {
       throw new Error("Not found");
     }
     result = await prisma.product.update({
-      where: { id: 1 },
+      where: { id: parseInt(id) },
       data: JSON.parse(event.body),
     });
   } catch (error) {
