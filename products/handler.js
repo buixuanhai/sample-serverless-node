@@ -49,3 +49,32 @@ module.exports.update = async (event) => {
     body: JSON.stringify(result),
   };
 };
+
+module.exports.delete = async (event) => {
+  const { id } = event.pathParameters;
+  let result;
+  try {
+    const product = await prisma.product.findUnique({
+      where: {
+        id: parseInt(id),
+      },
+    });
+
+    if (!product) {
+      throw new Error("Not found");
+    }
+    result = await prisma.product.delete({
+      where: { id: parseInt(id) },
+    });
+  } catch (error) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ message: "Invalid request" }),
+    };
+  }
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify(result),
+  };
+};

@@ -70,6 +70,27 @@ describe("products", () => {
   });
 
   describe("delete", () => {
-    test("should delete a product", () => {});
+    test("should delete a product", async () => {
+      const product = {
+        name: faker.commerce.productName(),
+        color: faker.commerce.color(),
+        price: "99",
+      };
+
+      const {
+        body: { id },
+      } = await request
+        .post("/products")
+        .send(product)
+        .set("Accept", "application/json");
+
+      const { body } = await request
+        .delete(`/products/${id}`)
+        .send()
+        .set("Accept", "application/json")
+        .expect(200);
+
+      expect(body).toMatchObject({ ...product, id: parseInt(id) });
+    });
   });
 });
