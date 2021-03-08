@@ -105,7 +105,7 @@ describe("products", () => {
     });
   });
 
-  describe.only("list", () => {
+  describe("list", () => {
     test("list products with default pagination", async () => {
       const { body } = await request
         .get("/products")
