@@ -11,7 +11,7 @@
   - [x] Create
   - [x] Update
   - [x] Delete
-  - [ ] Get
+  - [x] Get
 - Product search
   - [ ] By name
 - Product filter

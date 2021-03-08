@@ -111,3 +111,9 @@ functions:
       - http:
           path: products/{id}
           method: delete
+  getProduct:
+    handler: handler.get
+    events:
+      - http:
+          path: products/{id}
+          method: get

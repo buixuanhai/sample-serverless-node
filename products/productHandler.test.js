@@ -97,4 +97,25 @@ describe("products", () => {
       expect(body).toMatchObject({ ...product, id: parseInt(id) });
     });
   });
+
+  describe.only("get", () => {
+    test("should get a product", async () => {
+      const product = {
+        name: faker.commerce.productName(),
+        color: faker.commerce.color(),
+        price: "99",
+      };
+      const { body } = await request
+        .post("/products")
+        .send(product)
+        .set("Accept", "application/json");
+
+      const res = await request
+        .get(`/products/${body.id}`)
+        .set("Accept", "application/json")
+        .expect(200);
+
+      expect(res.body).toMatchObject(product);
+    });
+  });
 });
