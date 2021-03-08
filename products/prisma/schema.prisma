@@ -10,12 +10,19 @@ generator client {
   provider = "prisma-client-js"
 }
 
+model Brand {
+  id        Int      @default(autoincrement()) @id
+  name      String   @db.VarChar(255)
+  products  Product[]
+}
 
 model Product {
   id        Int      @default(autoincrement()) @id
+  name      String   @db.VarChar(255)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  name      String   @db.VarChar(255)
   price     Decimal
   color     String   @db.VarChar(255)
+  brandId   Int
+  brand     Brand    @relation(fields: [brandId], references: [id])
 }

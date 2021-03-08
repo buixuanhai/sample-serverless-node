@@ -28,3 +28,8 @@
   - [ ] ER model
   - [ ] Explanation for code structure
   - [ ] Steps to run the application
+
+### Commands
+
+- migrate: prisma migrate dev --preview-feature
+- seed: prisma db seed --preview-feature
