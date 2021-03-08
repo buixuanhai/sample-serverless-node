@@ -2,16 +2,14 @@
 
 ### TODOs
 
-- Categories CRUD
-  - [ ] Create
-  - [ ] Update
-  - [ ] Delete
-  - [ ] Get
 - Products CRUD
   - [x] Create
   - [x] Update
   - [x] Delete
   - [x] Get
+- Seed data
+  - [x] Products
+  - [x] Brands
 - Product search
   - [ ] By name
 - Product filter

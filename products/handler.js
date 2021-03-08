@@ -4,9 +4,10 @@ const prisma = new PrismaClient();
 
 module.exports.create = async (event) => {
   let result;
+  const { brandId, ...rest } = JSON.parse(event.body);
   try {
     result = await prisma.product.create({
-      data: JSON.parse(event.body),
+      data: { ...rest, brand: { connect: { id: brandId } } },
     });
   } catch (error) {
     return {
@@ -15,7 +16,7 @@ module.exports.create = async (event) => {
     };
   }
   return {
-    statusCode: 200,
+    statusCode: 201,
     body: JSON.stringify(result),
   };
 };

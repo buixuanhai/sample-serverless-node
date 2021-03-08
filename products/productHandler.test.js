@@ -15,13 +15,14 @@ describe("products", () => {
         name: faker.commerce.productName(),
         color: faker.commerce.color(),
         price: "99",
+        brandId: 1,
       };
 
-      const { body } = await request
+      await request
         .post("/products")
         .send(product)
-        .set("Accept", "application/json");
-      expect(body).toMatchObject(product);
+        .set("Accept", "application/json")
+        .expect(201);
     });
     test("should validate product payload when create", async () => {
       // product missing name
@@ -36,10 +37,6 @@ describe("products", () => {
         .expect(400);
       expect(body).toMatchObject({ message: "Invalid request" });
     });
-  });
-
-  describe("get", () => {
-    test("should get a product", () => {});
   });
 
   describe("update", () => {
@@ -79,6 +76,7 @@ describe("products", () => {
         name: faker.commerce.productName(),
         color: faker.commerce.color(),
         price: "99",
+        brandId: 1,
       };
 
       const {
@@ -98,24 +96,12 @@ describe("products", () => {
     });
   });
 
-  describe.only("get", () => {
+  describe("get", () => {
     test("should get a product", async () => {
-      const product = {
-        name: faker.commerce.productName(),
-        color: faker.commerce.color(),
-        price: "99",
-      };
-      const { body } = await request
-        .post("/products")
-        .send(product)
-        .set("Accept", "application/json");
-
-      const res = await request
-        .get(`/products/${body.id}`)
+      await request
+        .get("/products/1")
         .set("Accept", "application/json")
         .expect(200);
-
-      expect(res.body).toMatchObject(product);
     });
   });
 });
