@@ -44,6 +44,12 @@ functions:
       - http:
           path: activityLogs
           method: post
+  listLogs:
+    handler: handler.listLogs
+    events:
+      - http:
+          path: activityLogs
+          method: get
 resources:
   Resources:
     ActivityLogsDynamoDbTable:

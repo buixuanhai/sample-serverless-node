@@ -18,8 +18,8 @@
   - [x] Create activity_logs service
   - [ ] Setup kinesis
   - [x] Create DynamoDB activity_log table
-  - [ ] Stream search queries - use SQS
-  - [ ] Stream filtering queries - use direct http call
+  - [ ] Stream view queries - use SQS
+  - [x] Stream search queries - use direct http call
   - [ ] Stream view products - use Kinesis
 - Other
   - [ ] Draw diagram
@@ -31,4 +31,4 @@
 
 - migrate: npx prisma migrate dev --preview-feature
 - seed: npx prisma db seed --preview-feature
-- generate: npx prisma generate 
+- generate: npx prisma generate

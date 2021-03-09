@@ -35,9 +35,20 @@ module.exports.createLog = async (event) => {
     })
     .promise();
 
-  console.log(tableData);
-
   return {
     statusCode: 201,
+  };
+};
+
+module.exports.listLogs = async (event) => {
+  const tableData = await dynamoDb
+    .scan({
+      TableName: process.env.ACTIVITY_LOGS_TABLE,
+    })
+    .promise();
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify(tableData.Items),
   };
 };

@@ -12,4 +12,9 @@ describe("activityLogsHandler", () => {
       .set("Accept", "application/json")
       .expect(201);
   });
+
+  test("should list logs", async () => {
+    const { body } = await request.get("/activityLogs").expect(200);
+    console.log(body.length);
+  });
 });
