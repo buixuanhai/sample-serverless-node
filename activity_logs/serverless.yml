@@ -19,8 +19,8 @@ provider:
           Resource: "*"
 plugins:
   - serverless-dynamodb-local
-  - serverless-offline
   - serverless-offline-sqs
+  - serverless-offline
 
 custom:
   serverless-offline-sqs:
@@ -44,12 +44,15 @@ custom:
       convertEmptyValues: true
 
 functions:
-  createLog:
-    handler: handler.createLog
+  createLogHttp:
+    handler: handler.createLogHttp
     events:
       - http:
           path: activityLogs
           method: post
+  createLogSqs:
+    handler: handler.createLogSqs
+    events:
       - sqs:
           arn: arn:aws:sqs:region:XXXXXX:ActivityLogsQueue
 

@@ -4,7 +4,8 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "sls offline"
   },
   "keywords": [],
   "author": "",

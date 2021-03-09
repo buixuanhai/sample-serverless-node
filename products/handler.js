@@ -91,10 +91,11 @@ module.exports.delete = async (event) => {
 
 async function sendSqsMessage(payload) {
   try {
+    console.log("sending message");
     await sqs
       .sendMessage({
         QueueUrl: "http://localhost:9324/queue/ActivityLogsQueue",
-        MessageBody: payload,
+        MessageBody: JSON.stringify(payload),
       })
       .promise();
     console.log("message sent");
@@ -123,7 +124,10 @@ module.exports.get = async (event) => {
     };
   }
 
-  await sendSqsMessage(JSON.stringify(product));
+  await sendSqsMessage({
+    type: "view product",
+    payload: product,
+  });
 
   return {
     statusCode: 200,
