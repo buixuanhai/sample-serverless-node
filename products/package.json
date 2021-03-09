@@ -12,8 +12,6 @@
   "dependencies": {
     "@prisma/client": "^2.18.0",
     "axios": "^0.21.1",
-    "install": "^0.13.0",
-    "npm": "^7.6.1",
     "serverless-aws-documentation": "^1.1.0",
     "serverless-offline": "^6.8.0",
     "serverless-reqvalidator-plugin": "^1.0.4"

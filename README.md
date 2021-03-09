@@ -29,5 +29,5 @@
 
 ### Commands
 
-- migrate: prisma migrate dev --preview-feature
-- seed: prisma db seed --preview-feature
+- migrate: npx prisma migrate dev --preview-feature
+- seed: npx prisma db seed --preview-feature

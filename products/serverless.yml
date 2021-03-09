@@ -1,7 +1,7 @@
 service: products
 
 frameworkVersion: "2"
-
+useDotEnv: true
 provider:
   name: aws
   runtime: nodejs12.x
