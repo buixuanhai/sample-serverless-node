@@ -44,6 +44,9 @@ functions:
       - http:
           path: activityLogs
           method: post
+      - sqs:
+          arn: arn:aws:sqs:region:XXXXXX:MySecondQueue
+
   listLogs:
     handler: handler.listLogs
     events:

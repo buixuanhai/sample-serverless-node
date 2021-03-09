@@ -29,6 +29,7 @@
 
 ### Commands
 
+- reset: npx prisma migrate reset --preview-feature
 - migrate: npx prisma migrate dev --preview-feature
 - seed: npx prisma db seed --preview-feature
 - generate: npx prisma generate
