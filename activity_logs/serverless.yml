@@ -37,6 +37,10 @@ custom:
 functions:
   createLog:
     handler: handler.createLog
+    events:
+      - http:
+          path: activityLogs
+          method: post
 resources:
   Resources:
     ActivityLogsDynamoDbTable:
