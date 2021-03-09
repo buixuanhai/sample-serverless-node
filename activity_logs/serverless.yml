@@ -1,21 +1,22 @@
 service: activity-logs
 
 frameworkVersion: "2"
+useDotenv: true
 
 provider:
   name: aws
   runtime: nodejs12.x
   lambdaHashingVersion: 20201221
-  environment:
-    ACTIVITY_LOGS_TABLE: ${self:service}-${opt:stage, self:provider.stage}
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - dynamodb:Query
-        - dynamodb:Scan
-        - dynamodb:GetItem
-        - dynamodb:PutItem
-      Resource: "*"
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+          Resource: "*"
 plugins:
   - serverless-dynamodb-local
   - serverless-offline
@@ -51,4 +52,4 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-        TableName: ${self:provider.environment.CANDIDATE_TABLE}
+        TableName: ${env:ACTIVITY_LOGS_TABLE}
