@@ -19,8 +19,8 @@ provider:
           Resource: "*"
 plugins:
   - serverless-dynamodb-local
-  - serverless-offline-sqs
   - serverless-offline
+  - serverless-offline-sqs
 
 custom:
   serverless-offline-sqs:
