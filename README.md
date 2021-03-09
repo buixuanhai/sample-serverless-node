@@ -16,10 +16,9 @@
   - [ ] By price
 - Streaming and store data for analytics.
   - [x] Create activity_logs service
-  - [ ] Setup kinesis
   - [x] Create DynamoDB activity_log table
-  - [ ] Stream view queries - use SQS
   - [x] Stream search queries - use direct http call
+  - [ ] Stream view queries - use SQS
   - [ ] Stream view products - use Kinesis
 - Other
   - [ ] Draw diagram
@@ -35,3 +34,5 @@
 - generate: npx prisma generate
 
 - send sqs message: aws sqs --endpoint-url http://localhost:9324 send-message --queue-url http://localhost:9324/queue/ActivityLogsQueue --message-body "MyFirstMessage"
+- sls dynamodb install
+- sls dynamodb start

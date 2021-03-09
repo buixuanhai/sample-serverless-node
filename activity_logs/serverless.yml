@@ -5,7 +5,6 @@ useDotenv: true
 
 provider:
   name: aws
-  region: us-west-2
   runtime: nodejs12.x
   lambdaHashingVersion: 20201221
   iam:
@@ -26,7 +25,6 @@ plugins:
 custom:
   serverless-offline-sqs:
     endpoint: http://0.0.0.0:9324
-    region: ${self:provider.region}
     accessKeyId: root
     secretAccessKey: root
     skipCacheInvalidation: false

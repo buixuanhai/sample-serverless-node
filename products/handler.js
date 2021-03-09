@@ -2,6 +2,14 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const axios = require("axios");
+const AWS = require("aws-sdk");
+
+const sqs = new AWS.SQS({
+  region: "us-east-1",
+  endpoint: "http://localhost:9324",
+  accessKeyId: "DEFAULT_ACCESS_KEY",
+  secretAccessKey: "DEFAULT_SECRET",
+});
 
 module.exports.create = async (event) => {
   let result;
@@ -81,6 +89,20 @@ module.exports.delete = async (event) => {
   };
 };
 
+async function sendSqsMessage(payload) {
+  try {
+    await sqs
+      .sendMessage({
+        QueueUrl: "http://localhost:9324/queue/ActivityLogsQueue",
+        MessageBody: payload,
+      })
+      .promise();
+    console.log("message sent");
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 module.exports.get = async (event) => {
   const { id } = event.pathParameters;
   let product;
@@ -100,6 +122,8 @@ module.exports.get = async (event) => {
       body: JSON.stringify({ message: "Invalid request" }),
     };
   }
+
+  await sendSqsMessage(JSON.stringify(product));
 
   return {
     statusCode: 200,
