@@ -5,6 +5,7 @@ useDotenv: true
 
 provider:
   name: aws
+  region: us-west-2
   runtime: nodejs12.x
   lambdaHashingVersion: 20201221
   iam:
@@ -19,9 +20,16 @@ provider:
           Resource: "*"
 plugins:
   - serverless-dynamodb-local
+  - serverless-offline-sqs
   - serverless-offline
 
 custom:
+  serverless-offline-sqs:
+    endpoint: http://0.0.0.0:9324
+    region: ${self:provider.region}
+    accessKeyId: root
+    secretAccessKey: root
+    skipCacheInvalidation: false
   serverless-offline:
     lambdaPort: 4001
     httpPort: 3001
@@ -45,7 +53,7 @@ functions:
           path: activityLogs
           method: post
       - sqs:
-          arn: arn:aws:sqs:region:XXXXXX:MySecondQueue
+          arn: arn:aws:sqs:region:XXXXXX:ActivityLogsQueue
 
   listLogs:
     handler: handler.listLogs

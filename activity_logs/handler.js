@@ -11,6 +11,7 @@ const dynamoDb = new AWS.DynamoDB.DocumentClient({
 const uuid = require("uuid");
 
 module.exports.createLog = async (event) => {
+  console.log("create log");
   const body = JSON.parse(event.body ?? "{}");
   const timestamp = new Date().getTime();
 

@@ -33,3 +33,5 @@
 - migrate: npx prisma migrate dev --preview-feature
 - seed: npx prisma db seed --preview-feature
 - generate: npx prisma generate
+
+- send sqs message: aws sqs --endpoint-url http://localhost:9324 send-message --queue-url http://localhost:9324/queue/ActivityLogsQueue --message-body "MyFirstMessage"
