@@ -1,8 +1,8 @@
-const { hello } = require("../handler");
+const { createLog } = require("../handler");
 
 describe("activityLogsHandler", () => {
   test("should create log", async () => {
-    await hello({
+    await createLog({
       body: JSON.stringify({}),
     });
   });

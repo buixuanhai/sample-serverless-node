@@ -35,8 +35,8 @@ custom:
       convertEmptyValues: true
 
 functions:
-  hello:
-    handler: handler.hello
+  createLog:
+    handler: handler.createLog
 resources:
   Resources:
     ActivityLogsDynamoDbTable:
