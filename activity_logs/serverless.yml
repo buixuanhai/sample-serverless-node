@@ -22,6 +22,9 @@ plugins:
   - serverless-offline
 
 custom:
+  serverless-offline:
+    lambdaPort: 4001
+    httpPort: 3001
   dynamodb:
     stages:
       - dev

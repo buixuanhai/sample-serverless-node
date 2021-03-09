@@ -1,5 +1,5 @@
 let request = require("supertest");
-request = request("http://localhost:3000/dev");
+request = request("http://localhost:3001/dev");
 
 describe("activityLogsHandler", () => {
   test("should create log", async () => {

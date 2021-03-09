@@ -12,6 +12,9 @@ plugins:
   - serverless-aws-documentation
 
 custom:
+  serverless-offline:
+    lambdaPort: 4000
+    httpPort: 3000
   documentation:
     api:
       info:
@@ -104,4 +107,10 @@ functions:
     events:
       - http:
           path: products
+          method: get
+  searchProduct:
+    handler: handler.list
+    events:
+      - http:
+          path: searchProduct
           method: get

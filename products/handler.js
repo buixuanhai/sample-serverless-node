@@ -1,6 +1,7 @@
 "use strict";
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
+const axios = require("axios");
 
 module.exports.create = async (event) => {
   let result;
@@ -110,6 +111,40 @@ module.exports.list = async (event) => {
   const { page = 1, pageSize = 5, search = "" } =
     event.queryStringParameters || {};
   let result;
+  try {
+    result = await prisma.product.findMany({
+      skip: (page - 1) * parseInt(pageSize),
+      take: parseInt(pageSize),
+      where: {
+        name: {
+          contains: search,
+          mode: "insensitive",
+        },
+      },
+    });
+  } catch (error) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ message: "Invalid request" }),
+    };
+  }
+  return {
+    statusCode: 200,
+    body: JSON.stringify(result),
+  };
+};
+
+module.exports.search = async (event) => {
+  const { page = 1, pageSize = 5, search = "" } =
+    event.queryStringParameters || {};
+  let result;
+
+  if (search) {
+    axios.post("http://localhost:3000/dev/activityLogs", {
+      type: "search",
+      payload: search,
+    });
+  }
   try {
     result = await prisma.product.findMany({
       skip: (page - 1) * parseInt(pageSize),

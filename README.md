@@ -15,9 +15,9 @@
 - Product filter
   - [ ] By price
 - Streaming and store data for analytics.
-  - [ ] Create analytics_service
+  - [x] Create activity_logs service
   - [ ] Setup kinesis
-  - [ ] Create DynamoDB table with activities table
+  - [x] Create DynamoDB activity_log table
   - [ ] Stream search queries - use SQS
   - [ ] Stream filtering queries - use direct http call
   - [ ] Stream view products - use Kinesis
