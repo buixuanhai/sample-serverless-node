@@ -1,4 +1,9 @@
-# vdc-node-exam
+- [vdc-node-exam](#vdc-node-exam)
+  - [TODOs](#todos)
+  - [Step to run application](#step-to-run-application)
+  - [Commands](#commands)
+
+## vdc-node-exam
 
 ### TODOs
 
@@ -24,7 +29,25 @@
   - [ ] Draw diagram
   - [ ] ER model
   - [ ] Explanation for code structure
-  - [ ] Steps to run the application
+  - [x] Steps to run the application
+  - [ ] List curl commands to test apis
+
+### Step to run application
+
+- global requirements
+  - Docker
+  - npm install -g serverless
+- in root folder
+  - docker-compose up
+- in products folder
+  - npm install
+  - npm start
+  - npm test (optional)
+- in activity_logs folder
+  - npm install
+  - sls dynamodb start
+  - npm start
+  - npm test (optional)
 
 ### Commands
 
@@ -33,6 +56,6 @@
 - seed: npx prisma db seed --preview-feature
 - generate: npx prisma generate
 
-- send sqs message: aws sqs --endpoint-url http://localhost:9324 send-message --queue-url http://localhost:9324/queue/ActivityLogsQueue --message-body "MyFirstMessage"
+- send a sqs message: aws sqs --endpoint-url http://localhost:9324 send-message --queue-url http://localhost:9324/queue/ActivityLogsQueue --message-body "MyFirstMessage"
 - sls dynamodb install
 - sls dynamodb start
