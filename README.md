@@ -1,9 +1,23 @@
 - [vdc-node-exam](#vdc-node-exam)
+  - [Introduction](#introduction)
   - [TODOs](#todos)
   - [Step to run application](#step-to-run-application)
   - [Commands](#commands)
 
 ## vdc-node-exam
+
+### Introduction
+
+This node application is used to demonstrate
+
+- Building microservices on AWS
+- Serverless backend using AWS Lambda
+- Communication between services using
+  - Direct http calls
+  - Simple Queue Service (SQS)
+  - Near real-time data streaming using AWS Kinesis
+- Infrastructure as code (defined in serverless.yaml)
+- Integration tests
 
 ### TODOs
 
@@ -12,6 +26,7 @@
   - [x] Update
   - [x] Delete
   - [x] Get
+  - [x] List
 - Seed data
   - [x] Products
   - [x] Brands
@@ -20,10 +35,8 @@
 - Product filter
   - [ ] By price
 - Streaming and store data for analytics.
-  - [x] Create activity_logs service
-  - [x] Create DynamoDB activity_log table
-  - [x] Stream search queries - use direct http call
-  - [ ] Stream view queries - use SQS
+  - [x] Store search products logs - use direct http call
+  - [x] Store view product logs - use SQS
   - [ ] Stream view products - use Kinesis
 - Other
   - [ ] Draw diagram
@@ -45,6 +58,7 @@
   - npm test (optional)
 - in activity_logs folder
   - npm install
+  - sls dynamodb install
   - sls dynamodb start
   - npm start
   - npm test (optional)
