@@ -137,5 +137,18 @@ describe("products", () => {
         expect(item.name).toContain("Small");
       });
     });
+
+    test("filter by brand", async () => {
+      const { body } = await request
+        .get("/products?brand=dior")
+        .set("Accept", "application/json")
+        .expect(200);
+
+      body.forEach((item, index) => {
+        expect(item.brand.name).toBe("Dior");
+      });
+    });
+
+    test("should filter by color", () => {});
   });
 });

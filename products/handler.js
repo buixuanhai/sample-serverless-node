@@ -136,7 +136,7 @@ module.exports.get = async (event) => {
 };
 
 module.exports.list = async (event) => {
-  const { page = 1, pageSize = 5, search = "" } =
+  const { page = 1, pageSize = 5, search = "", brand = "" } =
     event.queryStringParameters || {};
   let result;
   try {
@@ -148,9 +148,19 @@ module.exports.list = async (event) => {
           contains: search,
           mode: "insensitive",
         },
+        brand: {
+          name: {
+            contains: brand,
+            mode: "insensitive",
+          },
+        },
+      },
+      include: {
+        brand: true,
       },
     });
   } catch (error) {
+    console.log(error);
     return {
       statusCode: 400,
       body: JSON.stringify({ message: "Invalid request" }),
