@@ -41,7 +41,7 @@ This node application is used to demonstrate
   - [x] Store view product logs - use SQS
   - [ ] Stream view products - use Kinesis
 - Other
-  - [ ] Draw diagram
+  - [ ] Draw architecture diagram
   - [ ] ER model
   - [ ] Explanation for code structure
   - [x] Steps to run the application
