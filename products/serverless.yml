@@ -8,82 +8,18 @@ provider:
 
 plugins:
   - serverless-offline
-  - serverless-reqvalidator-plugin
-  - serverless-aws-documentation
-
 custom:
   serverless-offline:
     lambdaPort: 4000
     httpPort: 3000
-  documentation:
-    api:
-      info:
-        version: "1.0.0"
-        title: My API
-        description: This is my API
-      tags:
-        - name: User
-          description: User Management
-    models:
-      - name: CreateProductRequest
-        contentType: "application/json"
-        schema:
-          type: object
-          properties:
-            required:
-              - email
-              - price
-            name:
-              type: string
-            color:
-              type: string
-            price:
-              type: string
-      - name: CreateProductResponse
-        contentType: "application/json"
-        schema:
-          type: object
-          properties:
-            name:
-              type: string
-            color:
-              type: string
-            price:
-              type: string
-      - name: 400JsonResponse
-        contentType: "application/json"
-        schema:
-          type: object
-          properties:
-            message:
-              type: string
-            statusCode:
-              type: number
-    commonModelSchemaFragments:
-      MethodResponse400Json:
-        statusCode: "400"
-        responseModels:
-          "application/json": 400JsonResponse
 
 functions:
   createProduct:
     handler: src/handler.create
     events:
       - http:
-          documentation:
-            summary: "Create product"
-            description: "Create product"
-            requestModels:
-              "application/json": CreateProductRequest
           path: products
           method: post
-          reqValidatorName: onlyBody
-          methodResponses:
-            - statusCode: "201"
-              responseModels:
-                "application/json": CreateProductResponse
-            - ${custom.commonModelSchemaFragments.MethodResponse400Json}
-
   updateProduct:
     handler: src/handler.update
     events:
