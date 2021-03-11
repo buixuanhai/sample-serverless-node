@@ -149,6 +149,17 @@ describe("products", () => {
       });
     });
 
-    test("should filter by color", () => {});
+    test("should filter by colors", async () => {
+      const { body } = await request
+        .get("/products?color=blue,red")
+        .set("Accept", "application/json")
+        .expect(200);
+
+      expect(
+        body.every((item) =>
+          ["red", "blue"].some((color) => item.color.includes(color))
+        )
+      ).toBe(true);
+    });
   });
 });

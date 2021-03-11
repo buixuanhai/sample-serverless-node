@@ -136,8 +136,10 @@ module.exports.get = async (event) => {
 };
 
 module.exports.list = async (event) => {
-  const { page = 1, pageSize = 5, search = "", brand = "" } =
+  const { page = 1, pageSize = 5, search = "", brand = "", color = "" } =
     event.queryStringParameters || {};
+  const colors = color.split(",");
+
   let result;
   try {
     result = await prisma.product.findMany({
@@ -154,6 +156,11 @@ module.exports.list = async (event) => {
             mode: "insensitive",
           },
         },
+        OR: colors.map((c) => ({
+          color: {
+            contains: c,
+          },
+        })),
       },
       include: {
         brand: true,
