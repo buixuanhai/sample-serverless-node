@@ -67,7 +67,7 @@ custom:
 
 functions:
   createProduct:
-    handler: handler.create
+    handler: src/handler.create
     events:
       - http:
           documentation:
@@ -85,31 +85,31 @@ functions:
             - ${custom.commonModelSchemaFragments.MethodResponse400Json}
 
   updateProduct:
-    handler: handler.update
+    handler: src/handler.update
     events:
       - http:
           path: products/{id}
           method: post
   deleteProduct:
-    handler: handler.delete
+    handler: src/handler.delete
     events:
       - http:
           path: products/{id}
           method: delete
   getProduct:
-    handler: handler.get
+    handler: src/handler.get
     events:
       - http:
           path: products/{id}
           method: get
   listProduct:
-    handler: handler.list
+    handler: src/handler.list
     events:
       - http:
           path: products
           method: get
   searchProduct:
-    handler: handler.list
+    handler: src/handler.list
     events:
       - http:
           path: searchProduct
