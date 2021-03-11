@@ -20,6 +20,7 @@ provider:
 plugins:
   - serverless-dynamodb-local
   - serverless-offline-sqs
+  - serverless-offline-kinesis
   - serverless-offline
 
 custom:
@@ -55,6 +56,15 @@ functions:
     events:
       - sqs:
           arn: arn:aws:sqs:region:XXXXXX:ActivityLogsQueue
+  createLogKinesis:
+    handler: handler.createLogKinesis
+    events:
+      - stream:
+          enabled: true
+          type: kinesis
+          arn: arn:aws:kinesis:eu-west-1:XXXXXX:stream/polls
+          batchSize: 10
+          startingPosition: TRIM_HORIZON
 
   listLogs:
     handler: handler.listLogs
