@@ -53,18 +53,18 @@ custom:
       convertEmptyValues: true
 functions:
   createLogHttp:
-    handler: handler.createLogHttp
+    handler: src/handler.createLogHttp
     events:
       - http:
           path: activityLogs
           method: post
   createLogSqs:
-    handler: handler.createLogSqs
+    handler: src/handler.createLogSqs
     events:
       - sqs:
           arn: arn:aws:sqs:region:XXXXXX:ActivityLogsQueue
   createLogKinesis:
-    handler: handler.createLogKinesis
+    handler: src/handler.createLogKinesis
     events:
       - stream:
           enabled: true
@@ -73,7 +73,7 @@ functions:
           batchSize: 10
           startingPosition: TRIM_HORIZON
   listLogs:
-    handler: handler.listLogs
+    handler: src/handler.listLogs
     events:
       - http:
           path: activityLogs

@@ -15,6 +15,5 @@ describe("activityLogsHandler", () => {
 
   test("should list logs", async () => {
     const { body } = await request.get("/activityLogs").expect(200);
-    console.log(body.length);
   });
 });
