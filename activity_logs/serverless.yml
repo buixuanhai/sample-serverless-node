@@ -24,6 +24,14 @@ plugins:
   - serverless-offline
 
 custom:
+  serverless-offline-kinesis:
+    apiVersion: "2013-12-02"
+    endpoint: http://0.0.0.0:4567
+    region: eu-west-1
+    accessKeyId: root
+    secretAccessKey: root
+    skipCacheInvalidation: false
+    readInterval: 500
   serverless-offline-sqs:
     endpoint: http://0.0.0.0:9324
     accessKeyId: root
@@ -62,10 +70,9 @@ functions:
       - stream:
           enabled: true
           type: kinesis
-          arn: arn:aws:kinesis:eu-west-1:XXXXXX:stream/polls
+          arn: arn:aws:kinesis:eu-west-1:XXXXXX:stream/ActivityLogsStream
           batchSize: 10
           startingPosition: TRIM_HORIZON
-
   listLogs:
     handler: handler.listLogs
     events:
