@@ -2,6 +2,7 @@
   - [Introduction](#introduction)
   - [TODOs](#todos)
   - [Step to run application](#step-to-run-application)
+  - [API enpoints](#api-enpoints)
   - [Commands](#commands)
 
 ## vdc-node-exam
@@ -63,6 +64,19 @@ This node application is used to demonstrate
   - sls dynamodb start
   - npm start
   - npm test (optional)
+
+### API enpoints
+
+| Entity  | Endpoint                                              | Method | Description          |
+| ------- | ----------------------------------------------------- | ------ | -------------------- |
+| Product | http://localhost:3000/dev/products                    | POST   | Create a new product |
+| Product | http://localhost:3000/dev/products/{id}               | GET    | Get a product        |
+| Product | http://localhost:3000/dev/products/{id}               | DELETE | Detete a product     |
+| Product | http://localhost:3000/dev/products/{id}               | POST   | Update a product     |
+| Product | http://localhost:3000/dev/products?search=productName | GET    | Search products      |
+| Product | http://localhost:3000/dev/products?page=2&pageSize=10 | GET    | Custom pagination    |
+| Product | http://localhost:3000/dev/products?color=red,blue     | GET    | Filter by colors     |
+| Product | http://localhost:3000/dev/products?brand=dior         | GET    | Filter by brand      |
 
 ### Commands
 
