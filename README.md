@@ -33,7 +33,8 @@ This node application is used to demonstrate
 - Product search
   - [x] By name
 - Product filter
-  - [ ] By price
+  - [ ] By color
+  - [ ] Brand
 - Streaming and store data for analytics.
   - [x] Store search products logs - use direct http call
   - [x] Store view product logs - use SQS

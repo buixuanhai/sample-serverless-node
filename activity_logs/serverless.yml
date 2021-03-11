@@ -51,7 +51,6 @@ custom:
       migrate: true
       seed: true
       convertEmptyValues: true
-
 functions:
   createLogHttp:
     handler: handler.createLogHttp
