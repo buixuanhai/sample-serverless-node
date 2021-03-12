@@ -5,6 +5,7 @@ Table of contents
   - [Tech stack](#tech-stack)
   - [Code structures](#code-structures)
   - [Microservices workflows](#microservices-workflows)
+  - [Database ER diagram](#database-er-diagram)
   - [TODOs](#todos)
   - [Steps to run application](#steps-to-run-application)
   - [API endpoints](#api-endpoints)
@@ -71,6 +72,10 @@ products
 - SQS workflow: when filter products by color or brand, the filters are sent as a SQS message to a ActivityLogsQueue, the `activity_logs` service process messages from the queue and process it (saving into database)
 - Kinesis workflow: when view a product, the a record is put to kinese ActivityLogsStream, `activity_logs` service poll records and process them (saving into database)
 
+### Database ER diagram
+
+![alt text](https://github.com/buixuanhai/sample-serverless-node/blob/main/er-diagram.PNG)
+
 ### TODOs
 
 - Products CRUD
@@ -91,10 +96,10 @@ products
 - Streaming and store data for analytics.
   - [x] Store search products logs - use direct http call
   - [x] Store view product logs - use SQS
-  - [ ] Stream view products - use Kinesis
+  - [x] Stream view products - use Kinesis
 - Other
   - [ ] Draw architecture diagram
-  - [ ] Draw ER model
+  - [x] Draw ER model
   - [x] Explanation for code structure
   - [x] Steps to run the application
   - [x] List curl commands to test apis
