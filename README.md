@@ -45,7 +45,7 @@ This node application is used to demonstrate
   - [ ] ER model
   - [ ] Explanation for code structure
   - [x] Steps to run the application
-  - [ ] List curl commands to test apis
+  - [x] List curl commands to test apis
 
 ### Step to run application
 
