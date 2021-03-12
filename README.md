@@ -4,7 +4,7 @@ Table of contents
   - [Introduction](#introduction)
   - [Tech stack](#tech-stack)
   - [Code structures](#code-structures)
-  - [Workflows](#workflows)
+  - [Microservices workflows](#microservices-workflows)
   - [TODOs](#todos)
   - [Steps to run application](#steps-to-run-application)
   - [API endpoints](#api-endpoints)
@@ -64,11 +64,12 @@ products
 └── serverless.yaml <-- define service resources
 ```
 
-### Workflows
+### Microservices workflows
 
 - CRUD product
-- SQS workflow
-- Kinesis workflow
+- Direct HTTP: from `products` service, when search products, the search term is logged by calling http api of `activity_logs` service with payload is search term
+- SQS workflow: when filter products by color or brand, the filters are sent as a SQS message to a ActivityLogsQueue, the `activity_logs` service process messages from the queue and process it (saving into database)
+- Kinesis workflow: when view a product, the a record is put to kinese ActivityLogsStream, `activity_logs` service poll records and process them (saving into database)
 
 ### TODOs
 
@@ -144,5 +145,6 @@ Located in curl-command.md file
 - generate: `npx prisma generate`
 
 - send a sqs message: `aws sqs --endpoint-url http://localhost:9324 send-message --queue-url http://localhost:9324/queue/ActivityLogsQueue --message-body "MyFirstMessage"`
+- put a kinesis record: `aws kinesis --endpoint-url http://localhost:4567 put-record --stream-name MyFirstStream --partition-key "MyFirstMessage" --data "MyFirstMessage" & `
 - `sls dynamodb install`
 - `sls dynamodb start`

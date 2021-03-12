@@ -124,11 +124,6 @@ module.exports.get = async (event) => {
     };
   }
 
-  await sendSqsMessage({
-    type: "view product",
-    payload: product,
-  });
-
   return {
     statusCode: 200,
     body: JSON.stringify(product),
@@ -139,6 +134,13 @@ module.exports.list = async (event) => {
   const { page = 1, pageSize = 5, search = "", brand = "", color = "" } =
     event.queryStringParameters || {};
   const colors = color.split(",");
+
+  if (brand || color) {
+    await sendSqsMessage({
+      type: "filter products",
+      payload: { brand, color },
+    });
+  }
 
   let result;
   try {

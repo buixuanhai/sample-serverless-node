@@ -37,8 +37,8 @@ module.exports.createLogHttp = async (event) => {
 };
 
 module.exports.createLogSqs = async (event) => {
-  console.log("create log from sqs");
   const body = JSON.parse(event.Records[0].body ?? "{}");
+  console.log("create log from sqs, event type: ", body);
   const timestamp = new Date().getTime();
 
   const logEvent = {
