@@ -6,6 +6,7 @@ Table of contents
   - [Code structures](#code-structures)
   - [Microservices workflows](#microservices-workflows)
   - [Database ER diagram](#database-er-diagram)
+  - [Architecture diagram](#architecture-diagram)
   - [TODOs](#todos)
   - [Steps to run application](#steps-to-run-application)
   - [API endpoints](#api-endpoints)
@@ -74,7 +75,11 @@ products
 
 ### Database ER diagram
 
-![alt text](https://github.com/buixuanhai/sample-serverless-node/blob/main/er-diagram.PNG)
+![ER diagram](https://github.com/buixuanhai/sample-serverless-node/blob/main/er-diagram.PNG)
+
+### Architecture diagram
+
+![Architecture diagram](https://github.com/buixuanhai/sample-serverless-node/blob/main/architecture.PNG)
 
 ### TODOs
 
@@ -98,7 +103,7 @@ products
   - [x] Store view product logs - use SQS
   - [x] Stream view products - use Kinesis
 - Other
-  - [ ] Draw architecture diagram
+  - [x] Draw architecture diagram
   - [x] Draw ER model
   - [x] Explanation for code structure
   - [x] Steps to run the application
