@@ -1,5 +1,6 @@
 - [vdc-node-exam](#vdc-node-exam)
   - [Introduction](#introduction)
+  - [Code structures](#code-structures)
   - [TODOs](#todos)
   - [Step to run application](#step-to-run-application)
   - [API enpoints](#api-enpoints)
@@ -19,6 +20,26 @@ This node application is used to demonstrate
   - Near real-time data streaming using AWS Kinesis
 - Infrastructure as code (defined in serverless.yaml)
 - Integration tests
+
+### Code structures
+
+- Each service is separated into its own folder and contains
+  - serverless.yaml: define service resource using Cloudformation syntax
+  - **tests**: unit test for application
+  - src/\*: contain code for the service
+
+```
+products
+├── __tests__ <-- teet folder
+│   └── productHandler.test.js
+├── prisma
+├── src
+│   └── handler.js <-- main handler file
+├── .env <-- dot env file
+├── .env.dev <-- dot env file
+├── package.json
+└── serverless.yaml <-- define service resources
+```
 
 ### TODOs
 
