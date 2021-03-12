@@ -1,16 +1,17 @@
 Table of contents
 
-- [vdc-node-exam](#vdc-node-exam)
+- [Sample serverless node](#sample-serverless-node)
   - [Introduction](#introduction)
   - [Tech stack](#tech-stack)
   - [Code structures](#code-structures)
+  - [Workflows](#workflows)
   - [TODOs](#todos)
   - [Steps to run application](#steps-to-run-application)
   - [API endpoints](#api-endpoints)
   - [Curl commands](#curl-commands)
   - [Commands](#commands)
 
-## vdc-node-exam
+## Sample serverless node
 
 ### Introduction
 
@@ -63,6 +64,12 @@ products
 └── serverless.yaml <-- define service resources
 ```
 
+### Workflows
+
+- CRUD product
+- SQS workflow
+- Kinesis workflow
+
 ### TODOs
 
 - Products CRUD
@@ -72,7 +79,6 @@ products
   - [x] Get
   - [x] List
   - [x] List with custom pagination
-  - [ ] List with sort order
 - Seed data
   - [x] Products
   - [x] Brands
@@ -87,11 +93,10 @@ products
   - [ ] Stream view products - use Kinesis
 - Other
   - [ ] Draw architecture diagram
-  - [ ] ER model
+  - [ ] Draw ER model
   - [x] Explanation for code structure
   - [x] Steps to run the application
   - [x] List curl commands to test apis
-  - [ ] Add example response for curl commands
 
 ### Steps to run application
 
