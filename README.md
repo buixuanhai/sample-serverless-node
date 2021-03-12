@@ -143,7 +143,7 @@ products
 | Activity Logs | http://localhost:3000/activityLogs                    | GET    | List activity logs   |
 | Activity Logs | http://localhost:3000/activityLogs                    | POST   | Create activity logs |
 
-### Curl commands
+### Curl commands to test apis
 
 Located in [curl-command.md](https://github.com/buixuanhai/sample-serverless-node/blob/main/curl-command.md) file
 
