@@ -71,10 +71,9 @@ module.exports.createLogKinesis = async (event) => {
     Item: {
       type: partitionKey,
       // decode data from base64
-      payload: atob(data),
+      payload: JSON.parse(atob(data)),
       id: uuid.v1(),
       createdAt: timestamp,
-      updatedAt: timestamp,
     },
   };
 

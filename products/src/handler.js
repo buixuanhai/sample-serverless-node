@@ -11,6 +11,13 @@ const sqs = new AWS.SQS({
   secretAccessKey: "DEFAULT_SECRET",
 });
 
+const kinesis = new AWS.Kinesis({
+  region: "eu-west-1",
+  accessKeyId: "local",
+  secretAccessKey: "local",
+  endpoint: "http://localhost:4567",
+});
+
 module.exports.create = async (event) => {
   let result;
   const { brandId, ...rest } = JSON.parse(event.body);
@@ -106,6 +113,7 @@ async function sendSqsMessage(payload) {
 
 module.exports.get = async (event) => {
   const { id } = event.pathParameters;
+
   let product;
   try {
     product = await prisma.product.findUnique({
@@ -114,10 +122,20 @@ module.exports.get = async (event) => {
       },
     });
 
+    console.log("put record to kinesis stream");
+    await kinesis
+      .putRecord({
+        StreamName: "ActivityLogsStream",
+        PartitionKey: `view product by id ${id}`,
+        Data: JSON.stringify(product),
+      })
+      .promise();
+
     if (!product) {
       throw new Error("Not found");
     }
   } catch (error) {
+    console.log(error);
     return {
       statusCode: 400,
       body: JSON.stringify({ message: "Invalid request" }),
