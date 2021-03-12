@@ -72,7 +72,8 @@ This node application is used to demonstrate
 | Product       | http://localhost:3000/dev/products                    | POST   | Create a new product |
 | Product       | http://localhost:3000/dev/products/{id}               | GET    | Get a product        |
 | Product       | http://localhost:3000/dev/products/{id}               | DELETE | Detete a product     |
-| Product       | http://localhost:3000/dev/products/{id}               | POST   | Update a product     |
+| Product       | http://localhost:3000/dev/products/{id}               | PUT    | Update a product     |
+| Product       | http://localhost:3000/dev/products                    | GET    | List products        |
 | Product       | http://localhost:3000/dev/products?search=productName | GET    | Search products      |
 | Product       | http://localhost:3000/dev/products?page=2&pageSize=10 | GET    | Custom pagination    |
 | Product       | http://localhost:3000/dev/products?color=red,blue     | GET    | Filter by colors     |
@@ -82,11 +83,11 @@ This node application is used to demonstrate
 
 ### Commands
 
-- reset: npx prisma migrate reset --preview-feature
-- migrate: npx prisma migrate dev --preview-feature
-- seed: npx prisma db seed --preview-feature
-- generate: npx prisma generate
+- reset: `npx prisma migrate reset --preview-feature`
+- migrate: `npx prisma migrate dev --preview-feature`
+- seed: `npx prisma db seed --preview-feature`
+- generate: `npx prisma generate`
 
-- send a sqs message: aws sqs --endpoint-url http://localhost:9324 send-message --queue-url http://localhost:9324/queue/ActivityLogsQueue --message-body "MyFirstMessage"
-- sls dynamodb install
-- sls dynamodb start
+- send a sqs message: `aws sqs --endpoint-url http://localhost:9324 send-message --queue-url http://localhost:9324/queue/ActivityLogsQueue --message-body "MyFirstMessage"`
+- `sls dynamodb install`
+- `sls dynamodb start`

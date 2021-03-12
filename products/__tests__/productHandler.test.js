@@ -48,7 +48,7 @@ describe("products", () => {
       };
 
       const { body } = await request
-        .post("/products/1")
+        .put("/products/1")
         .send(product)
         .set("Accept", "application/json")
         .expect(200);
@@ -62,7 +62,7 @@ describe("products", () => {
       };
 
       const { body } = await request
-        .post("/products/999")
+        .put("/products/999")
         .send(product)
         .set("Accept", "application/json")
         .expect(400);

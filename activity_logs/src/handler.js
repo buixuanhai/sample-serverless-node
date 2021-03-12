@@ -32,6 +32,7 @@ module.exports.createLogHttp = async (event) => {
 
   return {
     statusCode: 201,
+    body: event.body,
   };
 };
 
