@@ -23,10 +23,17 @@ This node application is used to demonstrate
 
 ### Code structures
 
+- At root directory: contains docker-compose.yaml for local development environment. This contains
+  - postgres database
+  - sqs
+  - kinesis
+  - dynamodb
 - Each service is separated into its own folder and contains
   - serverless.yaml: define service resource using Cloudformation syntax
   - **tests**: unit test for application
   - src/\*: contain code for the service
+
+Example for products service
 
 ```
 products
