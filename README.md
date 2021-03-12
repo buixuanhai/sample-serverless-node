@@ -41,7 +41,7 @@ This node application is used to demonstrate
 
 ### Code structures
 
-- At root directory: contains `docker-compose.yaml` for local development environment. This contain several images
+- At root directory: contains `docker-compose.yaml` for local development environment. This contains several images
   - postgres database
   - sqs
   - kinesis
@@ -49,7 +49,7 @@ This node application is used to demonstrate
 - Each service is separated into its own folder and contains
   - serverless.yaml: define service resource using Cloudformation syntax
   - tests: unit test for application
-  - src/\*: contain code for the service
+  - src/\*: contains code for the service
 
 Example for products service
 
@@ -69,7 +69,7 @@ products
 ### Microservices workflows
 
 - CRUD product
-- Direct HTTP: from `products` service, when search products, the search term is logged by calling http api of `activity_logs` service with payload is search term
+- Direct HTTP: from `products` service, when search products, the search term is logged by calling http api of `activity_logs` service with payload is search term. This is for demonstration purpose only. We shouldn't do this in production.
 - SQS workflow: when filter products by color or brand, the filters are sent as a SQS message to a ActivityLogsQueue, the `activity_logs` service process messages from the queue and process it (saving into database)
 - Kinesis workflow: when view a product, the a record is put to kinese ActivityLogsStream, `activity_logs` service poll records and process them (saving into database)
 
