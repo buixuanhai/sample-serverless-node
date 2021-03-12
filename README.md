@@ -67,16 +67,18 @@ This node application is used to demonstrate
 
 ### API enpoints
 
-| Entity  | Endpoint                                              | Method | Description          |
-| ------- | ----------------------------------------------------- | ------ | -------------------- |
-| Product | http://localhost:3000/dev/products                    | POST   | Create a new product |
-| Product | http://localhost:3000/dev/products/{id}               | GET    | Get a product        |
-| Product | http://localhost:3000/dev/products/{id}               | DELETE | Detete a product     |
-| Product | http://localhost:3000/dev/products/{id}               | POST   | Update a product     |
-| Product | http://localhost:3000/dev/products?search=productName | GET    | Search products      |
-| Product | http://localhost:3000/dev/products?page=2&pageSize=10 | GET    | Custom pagination    |
-| Product | http://localhost:3000/dev/products?color=red,blue     | GET    | Filter by colors     |
-| Product | http://localhost:3000/dev/products?brand=dior         | GET    | Filter by brand      |
+| Entity        | Endpoint                                              | Method | Description          |
+| ------------- | ----------------------------------------------------- | ------ | -------------------- |
+| Product       | http://localhost:3000/dev/products                    | POST   | Create a new product |
+| Product       | http://localhost:3000/dev/products/{id}               | GET    | Get a product        |
+| Product       | http://localhost:3000/dev/products/{id}               | DELETE | Detete a product     |
+| Product       | http://localhost:3000/dev/products/{id}               | POST   | Update a product     |
+| Product       | http://localhost:3000/dev/products?search=productName | GET    | Search products      |
+| Product       | http://localhost:3000/dev/products?page=2&pageSize=10 | GET    | Custom pagination    |
+| Product       | http://localhost:3000/dev/products?color=red,blue     | GET    | Filter by colors     |
+| Product       | http://localhost:3000/dev/products?brand=dior         | GET    | Filter by brand      |
+| Activity Logs | http://localhost:3000/activityLogs                    | GET    | List activity logs   |
+| Activity Logs | http://localhost:3000/activityLogs                    | POST   | Create activity logs |
 
 ### Commands
 
