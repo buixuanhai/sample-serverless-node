@@ -19,7 +19,7 @@ This node application is used to demonstrate
   - Simple Queue Service (SQS)
   - Near real-time data streaming using AWS Kinesis
 - Infrastructure as code (defined in serverless.yaml)
-- Integration tests
+- Integration tests using `supertest`
 
 ### Code structures
 
@@ -71,7 +71,7 @@ products
 - Other
   - [ ] Draw architecture diagram
   - [ ] ER model
-  - [ ] Explanation for code structure
+  - [x] Explanation for code structure
   - [x] Steps to run the application
   - [x] List curl commands to test apis
 
@@ -80,13 +80,13 @@ products
 - global requirements
   - Docker
   - npm install -g serverless
-- in root folder
+- from root folder
   - docker-compose up
-- in products folder
+- from products folder
   - npm install
   - npm start
   - npm test (optional)
-- in activity_logs folder
+- from activity_logs folder
   - npm install
   - sls dynamodb install
   - sls dynamodb start
