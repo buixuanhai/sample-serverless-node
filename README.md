@@ -145,6 +145,6 @@ Located in curl-command.md file
 - generate: `npx prisma generate`
 
 - send a sqs message: `aws sqs --endpoint-url http://localhost:9324 send-message --queue-url http://localhost:9324/queue/ActivityLogsQueue --message-body "MyFirstMessage"`
-- put a kinesis record: `aws kinesis --endpoint-url http://localhost:4567 put-record --stream-name MyFirstStream --partition-key "MyFirstMessage" --data "MyFirstMessage" & `
+- put a kinesis record, data must be base64: `aws kinesis --endpoint-url http://localhost:4567 put-record --stream-name ActivityLogsStream --partition-key "view product" --data "TXlGaXJzdE1lc3NhZ2UK"`
 - `sls dynamodb install`
 - `sls dynamodb start`

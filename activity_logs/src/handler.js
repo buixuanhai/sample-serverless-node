@@ -1,6 +1,7 @@
 "use strict";
 
 const AWS = require("aws-sdk");
+const atob = require("atob");
 
 const dynamoDb = new AWS.DynamoDB.DocumentClient({
   region: "localhost",
@@ -45,6 +46,32 @@ module.exports.createLogSqs = async (event) => {
     TableName: process.env.ACTIVITY_LOGS_TABLE,
     Item: {
       ...body,
+      id: uuid.v1(),
+      createdAt: timestamp,
+      updatedAt: timestamp,
+    },
+  };
+
+  await dynamoDb
+    .put(logEvent)
+    .promise()
+    .then((res) => logEvent);
+
+  return {
+    statusCode: 201,
+  };
+};
+
+module.exports.createLogKinesis = async (event) => {
+  const { partitionKey, data } = event.Records[0].kinesis;
+  const timestamp = new Date().getTime();
+
+  const logEvent = {
+    TableName: process.env.ACTIVITY_LOGS_TABLE,
+    Item: {
+      type: partitionKey,
+      // decode data from base64
+      payload: atob(data),
       id: uuid.v1(),
       createdAt: timestamp,
       updatedAt: timestamp,
