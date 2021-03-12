@@ -145,7 +145,7 @@ products
 
 ### Curl commands
 
-Located in curl-command.md file
+Located in [curl-command.md](https://github.com/buixuanhai/sample-serverless-node/blob/main/curl-command.md) file
 
 ### Commands
 
