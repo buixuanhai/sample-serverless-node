@@ -1,9 +1,12 @@
+Table of contents
+
 - [vdc-node-exam](#vdc-node-exam)
   - [Introduction](#introduction)
+  - [Tech stack](#tech-stack)
   - [Code structures](#code-structures)
   - [TODOs](#todos)
-  - [Step to run application](#step-to-run-application)
-  - [API enpoints](#api-enpoints)
+  - [Steps to run application](#steps-to-run-application)
+  - [API endpoints](#api-endpoints)
   - [Curl commands](#curl-commands)
   - [Commands](#commands)
 
@@ -14,24 +17,35 @@
 This node application is used to demonstrate
 
 - Building microservices on AWS
-- Serverless backend using AWS Lambda
+- Serverless backend
 - Communication between services using
   - Direct http calls
-  - Simple Queue Service (SQS)
+  - Message queue (SQS)
   - Near real-time data streaming using AWS Kinesis
 - Infrastructure as code (defined in serverless.yaml)
 - Integration tests using `supertest`
 
+### Tech stack
+
+- AWS Lambda + with IAM role
+- Amazon SQS
+- Amazon Kinesis
+- AWS Cloudformation
+- `supertest` library for integration test
+- AWS DynamoDB
+- PostgreSQL
+- Docker
+
 ### Code structures
 
-- At root directory: contains docker-compose.yaml for local development environment. This contains
+- At root directory: contains `docker-compose.yaml` for local development environment. This contain several images
   - postgres database
   - sqs
   - kinesis
   - dynamodb
 - Each service is separated into its own folder and contains
   - serverless.yaml: define service resource using Cloudformation syntax
-  - **tests**: unit test for application
+  - tests: unit test for application
   - src/\*: contain code for the service
 
 Example for products service
@@ -57,6 +71,8 @@ products
   - [x] Delete
   - [x] Get
   - [x] List
+  - [x] List with custom pagination
+  - [ ] List with sort order
 - Seed data
   - [x] Products
   - [x] Brands
@@ -75,26 +91,27 @@ products
   - [x] Explanation for code structure
   - [x] Steps to run the application
   - [x] List curl commands to test apis
+  - [ ] Add example response for curl commands
 
-### Step to run application
+### Steps to run application
 
 - global requirements
   - Docker
-  - npm install -g serverless
+  - `npm install -g serverless`
 - from root folder
-  - docker-compose up
+  - `docker-compose up`
 - from products folder
-  - npm install
-  - npm start
-  - npm test (optional)
+  - `npm install`
+  - `npm start`
+  - `npm test` (optional)
 - from activity_logs folder
-  - npm install
-  - sls dynamodb install
-  - sls dynamodb start
-  - npm start
-  - npm test (optional)
+  - `npm install`
+  - `serverless dynamodb install`
+  - `serverless dynamodb start`
+  - `npm start`
+  - `npm test` (optional)
 
-### API enpoints
+### API endpoints
 
 | Entity        | Endpoint                                              | Method | Description          |
 | ------------- | ----------------------------------------------------- | ------ | -------------------- |
