@@ -4,6 +4,7 @@
   - [TODOs](#todos)
   - [Step to run application](#step-to-run-application)
   - [API enpoints](#api-enpoints)
+  - [Curl commands](#curl-commands)
   - [Commands](#commands)
 
 ## vdc-node-exam
@@ -108,6 +109,10 @@ products
 | Product       | http://localhost:3000/dev/products?brand=dior         | GET    | Filter by brand      |
 | Activity Logs | http://localhost:3000/activityLogs                    | GET    | List activity logs   |
 | Activity Logs | http://localhost:3000/activityLogs                    | POST   | Create activity logs |
+
+### Curl commands
+
+Located in curl-command.md file
 
 ### Commands
 
