@@ -69,31 +69,19 @@ module.exports.update = async (event) => {
 
 module.exports.delete = async (event) => {
   const { id } = event.pathParameters;
-  let result;
   try {
-    const product = await prisma.product.findUnique({
-      where: {
-        id: parseInt(id),
-      },
-    });
+    let result = await productService.delete(id);
 
-    if (!product) {
-      throw new Error("Not found");
-    }
-    result = await prisma.product.delete({
-      where: { id: parseInt(id) },
-    });
+    return {
+      statusCode: 200,
+      body: JSON.stringify(result),
+    };
   } catch (error) {
     return {
       statusCode: 400,
       body: JSON.stringify({ message: "Invalid request" }),
     };
   }
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify(result),
-  };
 };
 
 async function sendSqsMessage(payload) {

@@ -59,9 +59,23 @@ class ProductService {
     });
   };
 
-  update = () => {};
+  update = async () => {};
 
-  delete = () => (list = () => {});
+  delete = async (id) => {
+    const product = await prisma.product.findUnique({
+      where: {
+        id: parseInt(id),
+      },
+    });
+    if (!product) {
+      throw new Error("Not found");
+    }
+    let result = await prisma.product.delete({
+      where: { id: parseInt(id) },
+    });
+
+    return result;
+  };
 }
 
 module.exports = ProductService;
