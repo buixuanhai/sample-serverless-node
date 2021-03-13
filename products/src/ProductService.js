@@ -17,6 +17,21 @@ const kinesis = new AWS.Kinesis({
   endpoint: "http://localhost:4567",
 });
 
+async function sendSqsMessage(payload) {
+  try {
+    console.log("sending message");
+    await sqs
+      .sendMessage({
+        QueueUrl: "http://localhost:9324/queue/ActivityLogsQueue",
+        MessageBody: JSON.stringify(payload),
+      })
+      .promise();
+    console.log("message sent");
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 class ProductService {
   get = async (id) => {
     let product;
@@ -88,6 +103,50 @@ class ProductService {
     }
     let result = await prisma.product.delete({
       where: { id: parseInt(id) },
+    });
+
+    return result;
+  };
+
+  list = async ({
+    page = 1,
+    pageSize = 5,
+    search = "",
+    brand = "",
+    color = "",
+  }) => {
+    const colors = color.split(",");
+
+    if (brand || color) {
+      await sendSqsMessage({
+        type: "filter products",
+        payload: { brand, color },
+      });
+    }
+
+    let result = await prisma.product.findMany({
+      skip: (page - 1) * parseInt(pageSize),
+      take: parseInt(pageSize),
+      where: {
+        name: {
+          contains: search,
+          mode: "insensitive",
+        },
+        brand: {
+          name: {
+            contains: brand,
+            mode: "insensitive",
+          },
+        },
+        OR: colors.map((c) => ({
+          color: {
+            contains: c,
+          },
+        })),
+      },
+      include: {
+        brand: true,
+      },
     });
 
     return result;

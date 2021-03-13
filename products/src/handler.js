@@ -108,43 +108,12 @@ module.exports.get = async (event) => {
 };
 
 module.exports.list = async (event) => {
-  const { page = 1, pageSize = 5, search = "", brand = "", color = "" } =
-    event.queryStringParameters || {};
-  const colors = color.split(",");
-
-  if (brand || color) {
-    await sendSqsMessage({
-      type: "filter products",
-      payload: { brand, color },
-    });
-  }
-
-  let result;
   try {
-    result = await prisma.product.findMany({
-      skip: (page - 1) * parseInt(pageSize),
-      take: parseInt(pageSize),
-      where: {
-        name: {
-          contains: search,
-          mode: "insensitive",
-        },
-        brand: {
-          name: {
-            contains: brand,
-            mode: "insensitive",
-          },
-        },
-        OR: colors.map((c) => ({
-          color: {
-            contains: c,
-          },
-        })),
-      },
-      include: {
-        brand: true,
-      },
-    });
+    let result = await productService.list(event.queryStringParameters || {});
+    return {
+      statusCode: 200,
+      body: JSON.stringify(result),
+    };
   } catch (error) {
     console.log(error);
     return {
@@ -152,10 +121,6 @@ module.exports.list = async (event) => {
       body: JSON.stringify({ message: "Invalid request" }),
     };
   }
-  return {
-    statusCode: 200,
-    body: JSON.stringify(result),
-  };
 };
 
 module.exports.search = async (event) => {
