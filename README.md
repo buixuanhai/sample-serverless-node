@@ -10,7 +10,7 @@ Table of contents
   - [TODOs](#todos)
   - [Steps to run application](#steps-to-run-application)
   - [API endpoints](#api-endpoints)
-  - [Curl commands](#curl-commands)
+  - [Curl commands to test apis](#curl-commands-to-test-apis)
   - [Commands](#commands)
 
 ## Sample serverless node
@@ -118,6 +118,7 @@ products
   - `docker-compose up`
 - from products folder
   - `npm install`
+  - `npx prisma migrate dev --preview-feature`
   - `npm start`
   - `npm test` (optional)
 - from activity_logs folder
