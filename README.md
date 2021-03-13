@@ -112,8 +112,9 @@ products
 ### Steps to run application
 
 - global requirements
+  - node version v14.14.0 or above
   - Docker
-  - `npm install -g serverless`
+  - `npm install -g serverless@latest`
 - from root folder
   - `docker-compose up`
 - from products folder
