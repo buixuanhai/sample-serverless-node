@@ -129,6 +129,8 @@ products
   - `npm start`
   - `npm test` (optional)
 
+Demo video: https://www.loom.com/share/c7ae0540a17248cfa0ddcb9fb3d71a42
+
 ### API endpoints
 
 | Entity        | Endpoint                                              | Method | Description          |
