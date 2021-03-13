@@ -22,22 +22,19 @@ const kinesis = new AWS.Kinesis({
 const productService = new ProductService();
 
 module.exports.create = async (event) => {
-  let result;
-  const { brandId, ...rest } = JSON.parse(event.body);
   try {
-    result = await prisma.product.create({
-      data: { ...rest, brand: { connect: { id: brandId } } },
-    });
+    let result = await productService.create(JSON.parse(event.body));
+    return {
+      statusCode: 201,
+      body: JSON.stringify(result),
+    };
   } catch (error) {
+    console.log(error);
     return {
       statusCode: 400,
       body: JSON.stringify({ message: "Invalid request" }),
     };
   }
-  return {
-    statusCode: 201,
-    body: JSON.stringify(result),
-  };
 };
 
 module.exports.update = async (event) => {
@@ -116,7 +113,6 @@ async function sendSqsMessage(payload) {
 
 module.exports.get = async (event) => {
   const { id } = event.pathParameters;
-
   try {
     let product;
     product = productService.get(id);

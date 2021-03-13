@@ -51,7 +51,13 @@ class ProductService {
     return product;
   };
 
-  create = () => {};
+  create = async (product) => {
+    const { brandId, ...rest } = product;
+
+    return await prisma.product.create({
+      data: { ...rest, brand: { connect: { id: brandId } } },
+    });
+  };
 
   update = () => {};
 
