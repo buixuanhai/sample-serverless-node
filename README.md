@@ -118,9 +118,9 @@ products
   - `docker-compose up`
 - from products folder
   - `npm install`
-  - `npx prisma migrate dev --preview-feature`
   - `npm start`
   - `npm test` (optional)
+  - if there is a problem starting the service, try running `npm run db:reset`
 - from activity_logs folder
   - `npm install`
   - `serverless dynamodb install`

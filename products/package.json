@@ -5,7 +5,10 @@
   "main": "handler.js",
   "scripts": {
     "test": "jest",
-    "start": "cross-env NODE_ENV=test sls offline"
+    "db:reset": "npx prisma migrate reset --preview-feature",
+    "db:migrate": "npx prisma migrate dev --preview-feature",
+    "db:seed": "npx prisma db seed --preview-feature",
+    "start": "cross-env NODE_ENV=test npm run db:migrate && npm run db:seed && sls offline"
   },
   "keywords": [],
   "author": "",
