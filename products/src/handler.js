@@ -3,6 +3,7 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const axios = require("axios");
 const AWS = require("aws-sdk");
+const ProductService = require("./ProductService");
 
 const sqs = new AWS.SQS({
   region: "us-east-1",
@@ -17,6 +18,8 @@ const kinesis = new AWS.Kinesis({
   secretAccessKey: "local",
   endpoint: "http://localhost:4567",
 });
+
+const productService = new ProductService();
 
 module.exports.create = async (event) => {
   let result;
@@ -114,26 +117,13 @@ async function sendSqsMessage(payload) {
 module.exports.get = async (event) => {
   const { id } = event.pathParameters;
 
-  let product;
   try {
-    product = await prisma.product.findUnique({
-      where: {
-        id: parseInt(id),
-      },
-    });
-
-    console.log("put record to kinesis stream");
-    await kinesis
-      .putRecord({
-        StreamName: "ActivityLogsStream",
-        PartitionKey: `view product by id ${id}`,
-        Data: JSON.stringify(product),
-      })
-      .promise();
-
-    if (!product) {
-      throw new Error("Not found");
-    }
+    let product;
+    product = productService.get(id);
+    return {
+      statusCode: 200,
+      body: JSON.stringify(product),
+    };
   } catch (error) {
     console.log(error);
     return {
@@ -141,11 +131,6 @@ module.exports.get = async (event) => {
       body: JSON.stringify({ message: "Invalid request" }),
     };
   }
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify(product),
-  };
 };
 
 module.exports.list = async (event) => {

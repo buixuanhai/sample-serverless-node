@@ -96,7 +96,7 @@ describe("products", () => {
     });
   });
 
-  describe("get", () => {
+  describe.only("get", () => {
     test("should get a product", async () => {
       await request
         .get("/products/1")
