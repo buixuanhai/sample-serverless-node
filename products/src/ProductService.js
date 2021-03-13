@@ -59,7 +59,23 @@ class ProductService {
     });
   };
 
-  update = async () => {};
+  update = async (product) => {
+    console.log(product);
+    const { id, ...body } = product;
+    const currentProduct = await prisma.product.findUnique({
+      where: {
+        id: parseInt(id),
+      },
+    });
+    if (!currentProduct) {
+      throw new Error("Not found");
+    }
+    let result = await prisma.product.update({
+      where: { id: parseInt(id) },
+      data: body,
+    });
+    return result;
+  };
 
   delete = async (id) => {
     const product = await prisma.product.findUnique({
