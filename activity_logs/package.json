@@ -13,7 +13,7 @@
   "devDependencies": {
     "cross-env": "^7.0.3",
     "serverless-dynamodb-local": "^0.2.39",
-    "serverless-offline": "^6.8.0",
+    "serverless-offline": "^12.0.4",
     "serverless-offline-kinesis": "^4.2.0",
     "serverless-offline-sqs": "^4.1.1",
     "supertest": "^6.1.3"
